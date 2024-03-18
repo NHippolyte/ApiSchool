@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+    use HasFactory;
     protected $fillable = ['content','image','tags', 'user_id', 'post_id'];
     
     // Relation avec User
