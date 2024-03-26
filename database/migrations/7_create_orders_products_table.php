@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+
 return new class extends Migration
 {
     /**
@@ -11,11 +12,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('roles', function (Blueprint $table) {
-            $table->id();
-            $table->string('role'); // mettre varchar mld
+        Schema::create('order_products', function (Blueprint $table) {
+
+            $table->primary(['product_id', 'order_id']);
+
+            $table->foreignId('product_id')->constrained()->onDelete('cascade');
+            $table->foreignId('order_id')->constrained()->onDelete('cascade');
+
+            $table->integer('quantity');
+
             $table->timestamps();
         });
+
+
     }
 
     /**
@@ -23,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('order_products');
     }
 };

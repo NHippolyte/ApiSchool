@@ -26,13 +26,17 @@ class UserFactory extends Factory
      * @return array<string, mixed>
      */
     public function definition(): array
-    {
+    { 
         return [
-            'pseudo' => fake()->name()  . fake()->firstName(),
-            'image' => 'user.jpg',
-            'email' => fake()->unique()->safeEmail(),
+            'pseudo' => $this->faker->unique()->userName,
+            'name' => $this->faker->firstName,
+            'lastname' => $this->faker->lastName,
+            'adress' => $this->faker->address,
+            'zip_code' => '75000',
+            'city' => $this->faker->city,
+            'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
-            'password' => bcrypt('blabbkaba'), // Remplacez avec le mot de passe souhaité
+            'password' => Hash::make('secret'), // Utilisez Hash::make pour hasher les mots de passe.
             'remember_token' => Str::random(10),
         ];
     }

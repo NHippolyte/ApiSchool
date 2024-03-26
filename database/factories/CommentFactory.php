@@ -20,11 +20,10 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         return [
-            'post_id' => rand(1, Post::count()), // Assurez-vous que Post::count() n'est pas 0
-            'content' => $this->faker->paragraph(),
-            'user_id' => rand(1, User::count()), // Assurez-vous que User::count() n'est pas 0
-            'image' => 'default_picture_' . rand(1,5) . '.jpg',
-            'tags' => $this->faker->words(3, true),
+            'description' => $this->faker->text, // Génère un texte aléatoire pour la description.
+            'image' => $this->faker->optional()->imageUrl(), // Génère une URL d'image aléatoire, optionnellement.
+            'product_id' => \App\Models\Product::factory(), // Génère un ID de produit en utilisant ProductFactory.
+            'user_id' => \App\Models\User::factory(), // Génère un ID d'utilisateur en utilisant UserFactory.
         ];
     }
 }

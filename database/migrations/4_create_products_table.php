@@ -11,10 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('role'); // mettre varchar mld
+            $table->string('name', 50);
+            $table->text('description');
+            $table->float('price', 5 , 2);
+
+            $table->foreignId('categorie_id')->constrained()->onDelete('cascade');
             $table->timestamps();
+        
         });
     }
 
@@ -23,6 +28,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('products');
+
     }
 };

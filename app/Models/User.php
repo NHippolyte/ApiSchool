@@ -24,6 +24,31 @@ class User extends Authenticatable
         'password',
     ];
 
+    protected $with = ['role', 'order', 'comment'];
+
+     // Relation avec User
+     public function role()
+     {
+         return $this->belongsTo(Role::class);
+     }
+
+      // Relation avec User
+      public function order()
+      {
+          return $this->hasMany(Order::class);
+      }
+
+       // Relation avec User
+     public function comment()
+     {
+         return $this->hasMany(Comment::class);
+     }
+
+     public function isAdmin()
+     {
+        return $this->role_id == 2;
+     }
+
     /**
      * The attributes that should be hidden for serialization.
      *

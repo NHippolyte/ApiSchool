@@ -13,14 +13,13 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->text('content');
+            $table->text('description'); // modifie mdl text 
             $table->string('image')->nullable();
-            $table->string('tags')->nullable();
             $table->timestamps();
 
-            $table->foreignId('post_id')->constrained()->onDelete('cascade');
+            $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-
+        
         });
     }
 
